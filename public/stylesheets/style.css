@@ -1,0 +1,21 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.editors{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+
+
+.editors pre{
+  height: 400px;
+}
+
