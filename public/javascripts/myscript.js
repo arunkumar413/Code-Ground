@@ -17,7 +17,7 @@ function exec(){
     var h_editor = ace.edit("html_editor");
     h_editor.setTheme("ace/theme/xcode");
     h_editor.session.setMode("ace/mode/html");
-    h_editor.setValue(snippet.join('\n'));
+   // h_editor.setValue(snippet.join('\n'));
 
     var c_editor = ace.edit("css_editor");
     c_editor.setTheme("ace/theme/xcode");
@@ -54,7 +54,10 @@ $.ajax({
     dataType: 'json',
     async: true,
     success: function(msg) {
-        alert(msg);
+        console.log(msg);
+        window.location.href= window.origin + window.location.pathname +msg;
+        location = location;
+
     }
 });
 }

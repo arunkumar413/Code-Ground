@@ -53,8 +53,10 @@ $.ajax({
     dataType: 'json',
     async: true,
     success: function(msg) {
-        alert(msg);
-    }
+        console.log(msg);
+        var f = document.getElementById("frame");
+        f.src = f.src;
+ }
 });
 }
 
