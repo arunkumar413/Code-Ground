@@ -54,7 +54,10 @@ $.ajax({
     async: true,
     success: function(msg) {
     console.log(msg);
+    console.log(location);
     window.location.href= window.origin + window.location.pathname +msg;
+    console.log(location);
+    windo.location.reload();
  }
 });
 

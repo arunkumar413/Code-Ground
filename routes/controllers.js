@@ -12,7 +12,6 @@ var show_editor = function(req,res,next){
 var return_entry = function (req,res,next){
 	Post.findById(req.params.id, function (err, doc) {
     if (err) console.log(err);
-	console.log(doc);
 	res.render('editor2',{doc});
 });
 
@@ -29,7 +28,6 @@ var display_frame = function (req,res,next) {
     $('style').append(doc.css);
     $('.html').append(doc.html);
     $('script').append(doc.js);
-    console.log($.html());
     res.status(200).send($.html());
 });
 });
