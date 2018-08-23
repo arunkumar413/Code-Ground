@@ -5,26 +5,20 @@ path = require('path');
 path.join(__dirname, 'template.html')
 
 var show_editor = function(req,res,next){
-	console.log(req.params.id);
-    res.render('editor');
-}
-
-
+  doc = {_id:''};
+    res.render('editor',{doc});
+  }
+  
 var return_entry = function (req,res,next){
-	console.log(req.params.id);
 	Post.findById(req.params.id, function (err, doc) {
-    if (err) return handleError(err);
+    if (err) console.log(err);
 	console.log(doc);
 	res.render('editor2',{doc});
 });
 
 }
 
-
-
 var display_frame = function (req,res,next) {
-  console.log('----##---')
-  console.log('req.params.id');
     Post.findById(req.params.id, function (err, doc) {
     if (err) return handleError(err);
     fs.readFile(path.join(__dirname, 'template.html'), 'utf8',function read(err, data) {
@@ -37,18 +31,10 @@ var display_frame = function (req,res,next) {
     $('script').append(doc.js);
     console.log($.html());
     res.status(200).send($.html());
-
-
-
 });
 });
 
 }
-
-
-
-
-
 
 var save_files = function(req,res,next){
 var h = req.body.html;

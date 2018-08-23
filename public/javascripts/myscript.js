@@ -54,10 +54,8 @@ $.ajax({
     dataType: 'json',
     async: true,
     success: function(msg) {
-        console.log(msg);
-        window.location.href= window.origin + window.location.pathname +msg;
-        location = location;
-
+    console.log(msg);
+    window.location.href= window.origin + window.location.pathname +msg;
     }
 });
 }
