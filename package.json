@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=* NODE_ENV=production node ./bin/www",
-    "devstart": "nodemon ./bin/www",
+    "devstart": "nodemon ./bin/www"
 
   },
   "dependencies": {
