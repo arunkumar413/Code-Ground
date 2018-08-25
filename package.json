@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=* node ./bin/www",
-    "devstart": "nodemon ./bin/www"
+    "start": "DEBUG=* NODE_ENV=production node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+
   },
   "dependencies": {
     "@google-cloud/storage": "^1.7.0",
