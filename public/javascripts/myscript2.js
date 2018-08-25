@@ -26,11 +26,44 @@ function exec(){
     j_editor.setTheme("ace/theme/xcode");
     j_editor.session.setMode("ace/mode/javascript");
 
+    
+    h_editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: false
+    });
+
+     c_editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: false
+    });
+     
+   j_editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: false
+    });
+
 
     $('.save').click(function(){
         save_file(h_editor,c_editor,j_editor)
     });
+$('.expand_html').click(function(){
+    $('.editors').css("grid-template-columns",'70% auto auto');
+});
 
+$('.expand_css').click(function(){
+    $('.editors').css("grid-template-columns",'auto 70% auto');
+});
+
+$('.expand_js').click(function(){
+    $('.editors').css("grid-template-columns",'auto auto 70%');
+});
+
+$('.reset_view').click(function(){
+    $('.editors').css("grid-template-columns",'auto auto auto');
+});
 
 }
 
