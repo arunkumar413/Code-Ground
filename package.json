@@ -5,9 +5,9 @@
   "scripts": {
     "start": "DEBUG=* NODE_ENV=production node ./bin/www",
     "devstart": "nodemon ./bin/www"
-
   },
   "dependencies": {
+    "@google-cloud/datastore": "^1.4.2",
     "@google-cloud/storage": "^1.7.0",
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "~1.4.3",
