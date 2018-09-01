@@ -23,7 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 username= process.env.USER;
 password = process.env.PASSWORD;
-var mongoDB = 'mongodb://${username}:${password}@ds133762.mlab.com:33762/code_ground';
+var mongoDB = 'mongodb://localhost/code_ground'
+// var mongoDB = 'mongodb://${username}:${password}@ds133762.mlab.com:33762/code_ground';
 
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
