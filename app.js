@@ -21,10 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-var mongoDB = 'mongodb://username:password@ds133762.mlab.com:33762/code_ground';
 username= process.env.USER;
-password = process.eng.PASSWORD;
+password = process.env.PASSWORD;
+var mongoDB = 'mongodb://${username}:${password}@ds133762.mlab.com:33762/code_ground';
+
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
