@@ -68,6 +68,10 @@ $('.reset_view').click(function(){
     $('.editors').css("grid-template-columns",'auto auto auto');
 });
 
+$('.fork').click(function(){
+    save_file(h_editor, c_editor, j_editor);
+});
+
 }
 
 function save_file(h_editor,c_editor,j_editor){

@@ -65,6 +65,10 @@ $('.reset_view').click(function(){
     $('.editors').css("grid-template-columns",'auto auto auto');
 });
 
+$('.fork').click(function(){
+    fork_file(h_editor, c_editor, j_editor);
+});
+
 }
 
 function save_file(h_editor,c_editor,j_editor){
@@ -96,4 +100,34 @@ $.ajax({
 
 
 }
+
+
+function fork_file(h_editor,c_editor,j_editor){
+   var h = h_editor.getValue();
+    var c = c_editor.getValue();
+    var j = j_editor.getValue();
+    id = '';
+    console.log(id);
+    var data = {html: h, css: c, js:j,id:id};
+
+   
+console.log(data);
+$.ajax({
+    url: '/save',
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    async: true,
+    success: function(msg) {
+    console.log(msg);
+    console.log(location);
+    window.location.href= window.origin +'/'+msg;
+    console.log(location);
+ }
+});
+
+
+}
+
 
