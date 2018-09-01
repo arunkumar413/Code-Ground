@@ -22,7 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-var mongoDB = 'mongodb://127.0.0.1/code_ground';
+var mongoDB = 'mongodb://username:password@ds133762.mlab.com:33762/code_ground';
+username= process.env.USER;
+password = process.eng.PASSWORD;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
