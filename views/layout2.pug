@@ -12,7 +12,8 @@ html
     .menu_bar
       button.save.btn.btn-primary.btn-sm Save
       button.fork.btn.btn-primary.btn-sm Fork
-      -var h = 'http://localhost:3000/out/' + doc._id;
+      //-var o = document.location.origin;
+      -var h = '/out/' + doc._id;
       a.btn.btn-primary.btn-sm(href=h target='_blank') Output in new tab
       button.expand_html.btn.btn-info.btn-sm Expand HTML
       button.expand_css.btn.btn-info.btn-sm Expand CSS
