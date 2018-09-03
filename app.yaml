@@ -1,7 +1,0 @@
-runtime: nodejs
-env: flex
-
-  
-env_variables:
-  USER: arun
-  PASSWORD: 9NK5RIXwQ2knRBkx
