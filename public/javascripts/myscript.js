@@ -52,6 +52,26 @@ function exec(){
         save_file(h_editor,c_editor,j_editor)
     });
 
+    Mousetrap.bind('ctrl+1', function(e) {
+    console.log('hello');
+    $('.editors').css("grid-template-columns",'70% auto auto');
+
+});
+
+
+     Mousetrap.bind('ctrl+2', function(e) {
+    console.log('hello');
+    $('.editors').css("grid-template-columns", 'auto 70%  auto');
+
+});
+
+
+    Mousetrap.bind('ctrl+3', function(e) {
+    console.log('hello');
+    $('.editors').css("grid-template-columns",'auto auto 70%');
+
+});   
+
 $('.expand_html').click(function(){
     $('.editors').css("grid-template-columns",'70% auto auto');
 });

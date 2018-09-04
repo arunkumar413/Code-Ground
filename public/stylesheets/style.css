@@ -33,3 +33,13 @@ button{
 .menu_bar{
 	margin-bottom: 5px;
 }
+
+a:link{
+  color: black;
+}
+
+.menu_bar a{
+  display: block;
+  float: right;
+  margin: 5px;
+}
