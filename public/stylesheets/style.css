@@ -32,14 +32,26 @@ button{
 
 .menu_bar{
 	margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
 }
 
-a:link{
-  color: black;
+
+.modal_hide{
+  display:none;
 }
 
-.menu_bar a{
-  display: block;
-  float: right;
-  margin: 5px;
+.modal_show {
+  position: fixed;
+  display:grid;
+  grid-template-rows: auto auto 60% auto 30px auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 2px -2px 8px gray;
+  padding:5px;
+  width: 50%;
+  z-index: 9999999;
+  grid-row-gap: 5px;
+  background-color: whitesmoke;
 }
