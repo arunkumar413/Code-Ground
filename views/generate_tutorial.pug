@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+    script(src= '/javascripts/generate_tutorial.js')
+    link(rel='stylesheet' href='/stylesheets/generate_tutorial.css')
+  body
+    .w3-card-4
+      .w3-container.w3-green
+        h2 Generate a tutorial
+        input(type="text" class="tutorial_title w3-input",placeholder="Enter a title for the tutorial")
+      button.w3-button.w3-purple.add_entry Add new entry
+      .tutorial_container
+        .entry
+          input.title.w3-input.w3-border.w3-round(type='text', placeholder='Enter a title')
+          input.p_id.w3-input.w3-border.w3-round(type='text', placeholder='Enter post Id. eg: 5ba6065f985bd01eab327714')
+      button.w3-button.w3-purple.submit Submit

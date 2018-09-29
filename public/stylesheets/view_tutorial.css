@@ -1,0 +1,66 @@
+.circle {
+  display: grid;
+  position: relative;
+  align-items: center;
+  padding: 2px;
+  margin-left: 10px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  margin-bottom: 10px;
+  grid-template-columns: auto auto
+}
+
+.circle .num {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  background-color: yellow;
+  color: black;
+  font-weight: bolder;
+  font-family: sans-serif;
+  font-size: x-large;
+}
+
+.circle .label {
+  margin-left: 0.6em;
+  margin-top: 7px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.line {
+  height: 50px;
+  width: 1px;
+  border: 1px solid purple;
+  margin-left: 30px;
+}
+
+.content_container>div {
+  display: none;
+}
+
+div :target {
+  display: block;
+}
+
+.tutorial_container {
+  display: grid;
+  grid-template-columns: 25% auto;
+}
+
+pre.prettyprint {
+  border-style: none;
+  overflow:auto;
+}
+
+.sidebar {
+  border-right: solid 1px purple;
+  padding: 10px;
+  background-color: whitesmoke;
+}
+

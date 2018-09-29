@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js')
+    link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+    script(src='/javascripts/view_tutorial.js')
+    link(rel='stylesheet' href='/stylesheets/view_tutorial.css')
+  body
+    .tutorial_container
+      .sidebar
+        each val, index in links
+          a.circle.w3-hover-purple.w3-green(href=`#${index+1}`)
+            .num #{index+1}
+            .label.w3-margin-bottom #{val.title}
+      .content_container.w3-content.w3-display-container.w3-margin-left
+        each val, index in codes
+          div(id=index+1) 
+            pre.html.mySlides.prettyprint #{val.html}
+            pre.js.mySlides.prettyprint  #{val.js}
+            pre.css.mySlides.prettyprint #{val.css}
+            .w3-center
+              button.w3-button.demo.html_btn HTML
+              button.w3-button.demo.js_btn JS
+              button.w3-button.demo.css_btn CSS

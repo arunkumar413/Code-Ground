@@ -3,13 +3,13 @@ block content
 	.editors
 		.html
 			span HTML
-			pre#html_editor #{doc.html}
+			pre#html_editor #{data.doc.html}
 		.css
 			span CSS
-			pre#css_editor #{doc.css}
+			pre#css_editor #{data.doc.css}
 
 		.js
 			span Js
-			pre#js_editor #{doc.js}
-	- var s = '/out/'+ doc._id
+			pre#js_editor #{data.doc.js}
+	- var s = '/out/'+ data.doc._id
 	iframe(id ='frame' src=s)

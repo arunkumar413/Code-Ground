@@ -1,0 +1,16 @@
+.entry{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .w3-card-4,.w3-green{
+   margin-bottom: 5px; 
+   padding: 10px;
+  }
+  
+  
+  .tutorial_container{
+    background-color: whitesmoke;
+  
+  }
+  
