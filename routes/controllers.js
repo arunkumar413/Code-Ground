@@ -79,16 +79,19 @@ var generate_tutorial= function (req, res, next){
 
 
 var save_tutorial = function (req,res,next){
-    console.log('-----------------reached_save_tutorial------------');
-    console.log(req.body);
-        let data = req.body;
-        doc = new Tutorial({data});
+        console.log('-----------------reached_save_tutorial------------');
+        console.log(req.body);
+        console.log(req.body.entries);
+        console.log(req.body.tutorial_title);
+        var data = req.body;
+        doc = new Tutorial();
+        doc.entry = data.entries;
+        doc.tutorial_title= data.tutorial_title;
         console.log(doc);
-        doc.entry= data;
         doc.save(function(err, p) {
             if (err) return console.error(err);
-            res.json({ redirect: '/tutorial/' + doc._id });
-        });
+            res.json({ redirect: '/tutorial/' + p._id });
+     });
     }
 
     
@@ -103,7 +106,7 @@ var view_tutorial = function(req,res,next){
         var items = doc1.entry;
         find_snippets(items).then((snippets) => {
         // res.json(codes);
-     res.render('view_tutorial', {links:items,codes:snippets});
+     res.render('view_tutorial', {links:items,codes:snippets,title:doc1.tutorial_title});
         });
     });
 }

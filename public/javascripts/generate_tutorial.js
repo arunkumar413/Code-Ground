@@ -8,25 +8,27 @@ function execute() {
     }
 
     $('.submit').click(function (){
-        var entries = [];
+        var e = [];
 $('.entry').each(function(){
 t = $(this).children('.title').val();
 p_id = $(this).children('.p_id').val();
 temp = {title:t,id:p_id };
-entries.push(temp);
+e.push(temp);
 });
-console.log(entries);
-save_tutorial(entries);
+console.log(e);
+t_title = $('.tutorial_title').val();
+var data = {entries: e, tutorial_title: t_title}
+save_tutorial(data);
 }
 
     );
 
-    function save_tutorial(entries) {
-        var data = entries;
+    function save_tutorial(d) {
+        var data1 = d;
         $.ajax({
             url: '/tutorial',
             type: 'POST',
-            data: JSON.stringify(data),
+            data: JSON.stringify(data1),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             async: true,

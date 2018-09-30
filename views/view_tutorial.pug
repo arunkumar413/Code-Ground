@@ -7,19 +7,21 @@ html
     script(src='/javascripts/view_tutorial.js')
     link(rel='stylesheet' href='/stylesheets/view_tutorial.css')
   body
+    .w3-container.w3-teal
+      h1 #{title}
     .tutorial_container
       .sidebar
         each val, index in links
-          a.circle.w3-hover-purple.w3-green(href=`#${index+1}`)
+          a.circle.w3-hoverpurple.w3-green(href=`#${index+1}`)
             .num #{index+1}
-            .label.w3-margin-bottom #{val.title}
-      .content_container.w3-content.w3-display-container.w3-margin-left
+            .label.w3margin-bottom #{val.title}
+      .content_container.w3-content.w3display-container.w3-margin-left
         each val, index in codes
           div(id=index+1) 
             pre.html.mySlides.prettyprint #{val.html}
             pre.js.mySlides.prettyprint  #{val.js}
             pre.css.mySlides.prettyprint #{val.css}
-            .w3-center
+            .w3-center             
               button.w3-button.demo.html_btn HTML
               button.w3-button.demo.js_btn JS
               button.w3-button.demo.css_btn CSS

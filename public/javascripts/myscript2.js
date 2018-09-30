@@ -125,6 +125,18 @@ libraries.push($(y).text().toString());
         fork_file(h_editor, c_editor, j_editor);
     });
 
+
+    $('#libraries').on('paste', function () {
+        var element = this;
+        setTimeout(function () {
+          var link = $(element).val();
+              console.log(link);
+              libraries.push(link);
+              $("#modal").append(`<p class='lib_link'> <span> ${link} </span> <button class='rem'> Remove </button> </p>`);
+        $('#modal .rem').click(remove_libraries);
+        }, 100);
+      });
+
 } //end of exec
 
 function save_file(h_editor, c_editor, j_editor, libs) {
@@ -200,3 +212,5 @@ function remove_libraries() {
     libraries.splice(loc, 1); //remove the library from array
     $(this).parent().remove();
 }
+
+

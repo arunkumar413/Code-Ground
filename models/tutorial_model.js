@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
   var Schema = mongoose.Schema;
   var TutorialSchema = new Schema({
-  entry: Array
+  entry: Array,
+  tutorial_title:String
   });
 
 
