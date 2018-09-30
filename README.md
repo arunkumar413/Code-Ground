@@ -19,7 +19,7 @@ https://code-ground.herokuapp.com/
 11) Tab complete snippets
 12) Create tutorials from the snippets
 13) Include libraries from cdnjs
-14 Highlight mactcing braces/tags
+14) Highlight mactcing braces/tags
 
 
 # Screenshots:
