@@ -6,7 +6,9 @@ html
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
+    script(src='https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ext-language_tools.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.2/mousetrap.min.js')
     script(src="./javascripts/myscript.js")
     link(rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css')
@@ -16,19 +18,17 @@ html
   body
     .menu_bar
       button.save.btn.btn-outline-primary.btn-sm Save
-      button.fork.btn.btn-outline-primary.btn-sm Fork
       button.expand_html.btn.btn-outline-info.btn-sm Expand HTML
       button.expand_css.btn.btn-outline-info.btn-sm Expand CSS
       button.expand_js.btn.btn-outline-info.btn-sm Expand Js
       button.reset_view.btn.btn-outline-info.btn-sm Reset view
+      button.post_details.btn.btn-outline-danger.btn-sm Post details
+      a.btn.btn-outline-primary.btn-sm(href='/tutorial') Create a tutorial
       a(href='https://github.com/arunkumar413/Code-Ground' target="_blank" )
         i.fab.fa-github.fa-2x
-      button.post_details.btn.btn-outline-danger Post details
   #modal.modal_hide
-    .ui-widget
-      input#libraries.form-control.form-control-sm(placeholder='Add Js/CSS libraries')
     input(type="text" class='form-control title' placeholder="Enter a title")
-    textarea(class ='form-control desc' placeholder="Enter description")
+    input#libraries.form-control.form-control-sm(placeholder='search cdnjs or paste library URL')
     h4 Publish this post?
       select#pub
         option(value=0) No

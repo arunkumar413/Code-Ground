@@ -10,7 +10,8 @@ var mongoose = require('mongoose');
   	likes:Number,
   	libs: Array,
   	date:{ type: Date, default: Date.now },
-  	publish:{type:Boolean, default:false}
+  	publish:{type:Boolean, default:false},
+    posted_by:String,
   });
 
 

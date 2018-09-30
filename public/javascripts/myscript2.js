@@ -24,16 +24,19 @@ libraries.push($(y).text().toString());
     var h_editor = ace.edit("html_editor");
     h_editor.setTheme("ace/theme/xcode");
     h_editor.session.setMode("ace/mode/html");
+    h_editor.setShowPrintMargin(false);
 
     // h_editor.setValue("resnponse-data');
 
     var c_editor = ace.edit("css_editor");
     c_editor.setTheme("ace/theme/xcode");
     c_editor.session.setMode("ace/mode/css");
+    c_editor.setShowPrintMargin(false);
 
     var j_editor = ace.edit("js_editor");
     j_editor.setTheme("ace/theme/xcode");
     j_editor.session.setMode("ace/mode/javascript");
+    j_editor.setShowPrintMargin(false);
 
 
     h_editor.setOptions({
@@ -122,6 +125,18 @@ libraries.push($(y).text().toString());
         fork_file(h_editor, c_editor, j_editor);
     });
 
+
+    $('#libraries').on('paste', function () {
+        var element = this;
+        setTimeout(function () {
+          var link = $(element).val();
+              console.log(link);
+              libraries.push(link);
+              $("#modal").append(`<p class='lib_link'> <span> ${link} </span> <button class='rem'> Remove </button> </p>`);
+        $('#modal .rem').click(remove_libraries);
+        }, 100);
+      });
+
 } //end of exec
 
 function save_file(h_editor, c_editor, j_editor, libs) {
@@ -143,11 +158,8 @@ function save_file(h_editor, c_editor, j_editor, libs) {
         dataType: 'json',
         async: true,
         success: function(msg) {
-            console.log(msg);
-            console.log(location);
-            window.location.href = window.origin + window.location.pathname + msg;
-            console.log(location);
-            windo.location.reload();
+            window.location.href= msg.redirect;
+
         }
     });
 
@@ -173,10 +185,8 @@ function fork_file(h_editor, c_editor, j_editor, libs) {
         dataType: 'json',
         async: true,
         success: function(msg) {
-            console.log(msg);
-            console.log(location);
-            window.location.href = window.origin + '/' + msg;
-            console.log(location);
+            window.location.href= location.origin + '/' + msg.redirect;
+
         }
     });
 
@@ -190,7 +200,6 @@ function show_post_details() {
 
 var save_libraries = function(event, ui) {
     libraries.push(ui.item.value);
-    console.log(libraries);
     $("#modal").append(`<p class='lib_link'> <span> ${ui.item.value} </span> <button class='rem'> Remove </button> </p>`);
     $('#modal .rem').click(remove_libraries);
 
@@ -201,6 +210,7 @@ function remove_libraries() {
     w = w.toString();
     var loc = libraries.indexOf(w);
     libraries.splice(loc, 1); //remove the library from array
-    console.log(libraries);
     $(this).parent().remove();
 }
+
+
