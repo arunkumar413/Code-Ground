@@ -42,7 +42,8 @@ libraries.push($(y).text().toString());
     h_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: false,
+        tabSize: 2
     });
 
     c_editor.setOptions({

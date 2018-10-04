@@ -21,6 +21,7 @@ var return_entry = function(req, res, next) {
 }
 
 var display_frame = function(req, res, next) {
+    var temp='';
     Post.findById(req.params.id, function(err, doc) {
         if (err) return handleError(err);
         fs.readFile(path.join(__dirname, 'template.html'), 'utf8', function read(err, data) {
@@ -33,7 +34,12 @@ var display_frame = function(req, res, next) {
             $('body').prepend(doc.html);
             $('body > script').append(doc.js);
             doc.libs.forEach(function(x) {
-                var temp = (`<script src="${x}"><\/script>`);
+                if(x.endsWith('.css')){
+                temp= (`<link rel='stylesheet' href="${x}"></link>`);
+                }
+                else if (x.endsWith('.js')){
+                 temp = (`<script src="${x}"><\/script>`);
+                }
                 $('head').append(temp);
             })
 
@@ -45,6 +51,7 @@ var display_frame = function(req, res, next) {
 }
 
 var save_files = function(req, res, next) {
+    var t_type=0;
     var h = req.body.html;
     var c = req.body.css;
     var j = req.body.js;
@@ -53,9 +60,16 @@ var save_files = function(req, res, next) {
     var t = req.body.title;
     var d = req.body.des;
     var p = req.body.publish;
+    if (req.body.template_type==='HMTL'){
+        t_type=0;
 
+    }
+else if (req.body.template_type==="PUG"){
+    t_type=1;
+    h = pug.compile(h);
+}
     if (req.body.id === "") {
-        let data = { html: h, css: c, js: j, libs: l, title: t, description: d, publish: p};
+        let data = { html: h, css: c, js: j, libs: l, title: t, description: d, publish: p,is_pug:t_type};
         doc = new Post(data);
         doc.save(function(err, p) {
             if (err) return console.error(err);

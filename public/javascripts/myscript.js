@@ -20,39 +20,28 @@ function exec() {
     h_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true,
+        tabSize: 2
+        
     });
 
     c_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true
     });
 
     j_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true
     });
 
     $('.save').click(function() {
         var t = $('.title').val(); //get the title
         var pub = $('#pub').val();  // whether to publish
-        save_file(h_editor, c_editor, j_editor, libraries, t, pub);
-    });
-
-    Mousetrap.bind('ctrl+1', function(e) {
-        $('.editors').css("grid-template-columns", '70% auto auto');
-    });
-
-
-    Mousetrap.bind('ctrl+2', function(e) {
-        $('.editors').css("grid-template-columns", 'auto 70%  auto');
-    });
-
-
-    Mousetrap.bind('ctrl+3', function(e) {
-        $('.editors').css("grid-template-columns", 'auto auto 70%');
+        var html_template_type = $('.html_type').val();
+        save_file(h_editor, c_editor, j_editor, libraries, t, pub,html_template_type);
     });
 
     $(".post_details").click(show_post_details);
@@ -96,14 +85,14 @@ function exec() {
     });
 
 
-function save_file(h_editor, c_editor, j_editor, l, t, p) {
+function save_file(h_editor, c_editor, j_editor, l, t, p,html_template_type) {
     var h = h_editor.getValue(); //html content
     var c = c_editor.getValue(); // css content
     var j = j_editor.getValue(); // js content
 
     id = window.location.pathname;
     id = id.replace('/', '');
-    var data = { html: h, css: c, js: j, id: id, libs: l, title: t, publish: p };
+    var data = { html: h, css: c, js: j, id: id, libs: l, title: t, publish: p,template_type:html_template_type };
     $.ajax({
         url: '/save',
         type: 'POST',
