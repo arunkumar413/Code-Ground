@@ -1,18 +1,27 @@
 $(document).ready(exec);
 var libraries = [];
 function exec() {
+
+    if (localStorage.getItem('theme')==null){
+        theme = 'xcode';
+    }
+
+    else {
+        theme = localStorage.getItem('theme');
+    }
+
     var h_editor = ace.edit("html_editor");
-    h_editor.setTheme("ace/theme/xcode");
+    h_editor.setTheme("ace/theme/"+theme);
     h_editor.session.setMode("ace/mode/html");
     h_editor.setShowPrintMargin(false);
 
     var c_editor = ace.edit("css_editor");
-    c_editor.setTheme("ace/theme/xcode");
+    c_editor.setTheme("ace/theme/"+theme);
     c_editor.session.setMode("ace/mode/css");
     c_editor.setShowPrintMargin(false);
 
     var j_editor = ace.edit("js_editor");
-    j_editor.setTheme("ace/theme/xcode");
+    j_editor.setTheme("ace/theme/"+theme);
     j_editor.session.setMode("ace/mode/javascript");
     j_editor.setShowPrintMargin(false);
 
@@ -137,5 +146,24 @@ function remove_libraries() {
     $('#modal .rem').click(remove_libraries);
     }, 100);
   });
+
+
+$('.fa-moon').click(function(){
+    h_editor.setTheme("ace/theme/ambiance");
+    j_editor.setTheme("ace/theme/ambiance");
+    c_editor.setTheme("ace/theme/ambiance");
+    localStorage.setItem('theme','ambiance')
+
+
+});
+
+$('.fa-sun').click(function(){
+    h_editor.setTheme("ace/theme/xcode");
+    j_editor.setTheme("ace/theme/xcode");
+    c_editor.setTheme("ace/theme/xcode");
+    localStorage.setItem('theme','xcode')
+
+});
+
 
 }// end of exec

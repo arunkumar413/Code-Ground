@@ -22,7 +22,8 @@ a {
 
 iframe{
 	width: 100%;
-	height: 500px;
+  height: 500px;
+  background-color: white;
 }
 
 
@@ -33,7 +34,7 @@ button{
 .menu_bar{
 	margin-bottom: 5px;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
 }
 
 

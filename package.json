@@ -16,6 +16,7 @@
     "dotenv": "^6.0.0",
     "express": "~4.16.0",
     "firebase-admin": "^6.0.0",
+    "html2pug": "^2.0.1",
     "http-errors": "~1.6.2",
     "mongoose": "^5.2.12",
     "mongoose-findorcreate": "^3.0.0",

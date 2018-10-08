@@ -28,10 +28,12 @@ html
       -var h = '/out/' + data.doc._id;
       a.btn.btn-outline-primary.btn-sm(href=h target='_blank') Output in new tab
       a(href='https://github.com/arunkumar413/Code-Ground' target="_blank")
-        i.fab.fa-github.fa-2x   
+        i.fab.fa-github.fa-2x
+      i.fas.fa-sun.btn.btn-link
+      i.fas.fa-moon.btn.btn-link   
   #modal.modal_hide
     h4 #{data.doc.title}
-    input#libraries.form-control.form-control-sm(placeholder='search cdnjs or paste the library url')
+    input#libraries.form-control.form-control-sm(placeholder='Search cdnjs or paste the library url')
     p.description #{data.doc.description}
     each val in data.doc.libs
       p.lib_link 
