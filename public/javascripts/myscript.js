@@ -1,18 +1,27 @@
 $(document).ready(exec);
 var libraries = [];
 function exec() {
+
+    if (localStorage.getItem('theme')==null){
+        theme = 'xcode';
+    }
+
+    else {
+        theme = localStorage.getItem('theme');
+    }
+
     var h_editor = ace.edit("html_editor");
-    h_editor.setTheme("ace/theme/xcode");
+    h_editor.setTheme("ace/theme/"+theme);
     h_editor.session.setMode("ace/mode/html");
     h_editor.setShowPrintMargin(false);
 
     var c_editor = ace.edit("css_editor");
-    c_editor.setTheme("ace/theme/xcode");
+    c_editor.setTheme("ace/theme/"+theme);
     c_editor.session.setMode("ace/mode/css");
     c_editor.setShowPrintMargin(false);
 
     var j_editor = ace.edit("js_editor");
-    j_editor.setTheme("ace/theme/xcode");
+    j_editor.setTheme("ace/theme/"+theme);
     j_editor.session.setMode("ace/mode/javascript");
     j_editor.setShowPrintMargin(false);
 
@@ -20,39 +29,28 @@ function exec() {
     h_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true,
+        tabSize: 2
+        
     });
 
     c_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true
     });
 
     j_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true
     });
 
     $('.save').click(function() {
         var t = $('.title').val(); //get the title
         var pub = $('#pub').val();  // whether to publish
-        save_file(h_editor, c_editor, j_editor, libraries, t, pub);
-    });
-
-    Mousetrap.bind('ctrl+1', function(e) {
-        $('.editors').css("grid-template-columns", '70% auto auto');
-    });
-
-
-    Mousetrap.bind('ctrl+2', function(e) {
-        $('.editors').css("grid-template-columns", 'auto 70%  auto');
-    });
-
-
-    Mousetrap.bind('ctrl+3', function(e) {
-        $('.editors').css("grid-template-columns", 'auto auto 70%');
+        var html_template_type = $('.html_type').val();
+        save_file(h_editor, c_editor, j_editor, libraries, t, pub,html_template_type);
     });
 
     $(".post_details").click(show_post_details);
@@ -96,14 +94,14 @@ function exec() {
     });
 
 
-function save_file(h_editor, c_editor, j_editor, l, t, p) {
+function save_file(h_editor, c_editor, j_editor, l, t, p,html_template_type) {
     var h = h_editor.getValue(); //html content
     var c = c_editor.getValue(); // css content
     var j = j_editor.getValue(); // js content
 
     id = window.location.pathname;
     id = id.replace('/', '');
-    var data = { html: h, css: c, js: j, id: id, libs: l, title: t, publish: p };
+    var data = { html: h, css: c, js: j, id: id, libs: l, title: t, publish: p,template_type:html_template_type };
     $.ajax({
         url: '/save',
         type: 'POST',
@@ -148,5 +146,24 @@ function remove_libraries() {
     $('#modal .rem').click(remove_libraries);
     }, 100);
   });
+
+
+$('.fa-moon').click(function(){
+    h_editor.setTheme("ace/theme/ambiance");
+    j_editor.setTheme("ace/theme/ambiance");
+    c_editor.setTheme("ace/theme/ambiance");
+    localStorage.setItem('theme','ambiance')
+
+
+});
+
+$('.fa-sun').click(function(){
+    h_editor.setTheme("ace/theme/xcode");
+    j_editor.setTheme("ace/theme/xcode");
+    c_editor.setTheme("ace/theme/xcode");
+    localStorage.setItem('theme','xcode')
+
+});
+
 
 }// end of exec

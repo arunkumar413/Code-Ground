@@ -11,7 +11,8 @@ var mongoose = require('mongoose');
   	libs: Array,
   	date:{ type: Date, default: Date.now },
   	publish:{type:Boolean, default:false},
-    posted_by:String,
+		posted_by:String,
+		is_pug:{type:Boolean,default:false}
   });
 
 

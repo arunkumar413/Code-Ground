@@ -8,33 +8,28 @@ function exec() {
 libraries.push($(y).text().toString());
 });
     $('#modal .rem').click(remove_libraries);
-    
-    var snippet = ["<!DOCTYPE html>",
-        "<html>",
-        "<head>",
-        '<meta charset="utf-8">',
-        '<meta name="viewport" content="width=device-width">',
-        "<title>JS Bin</title>",
-        "</head>",
-        "<body>",
-        "</body>",
-        "</html>"
-    ];
+    if (localStorage.getItem('theme')==null){
+        theme = 'xcode';
+    }
 
+    else {
+        theme = localStorage.getItem('theme');
+    }
+    var theme = localStorage.getItem('theme');
     var h_editor = ace.edit("html_editor");
-    h_editor.setTheme("ace/theme/xcode");
+    h_editor.setTheme("ace/theme/" + theme);
     h_editor.session.setMode("ace/mode/html");
     h_editor.setShowPrintMargin(false);
 
     // h_editor.setValue("resnponse-data');
 
     var c_editor = ace.edit("css_editor");
-    c_editor.setTheme("ace/theme/xcode");
+    c_editor.setTheme("ace/theme/"+theme);
     c_editor.session.setMode("ace/mode/css");
     c_editor.setShowPrintMargin(false);
 
     var j_editor = ace.edit("js_editor");
-    j_editor.setTheme("ace/theme/xcode");
+    j_editor.setTheme("ace/theme/"+theme);
     j_editor.session.setMode("ace/mode/javascript");
     j_editor.setShowPrintMargin(false);
 
@@ -42,45 +37,37 @@ libraries.push($(y).text().toString());
     h_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true,
+        tabSize: 2
     });
 
     c_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true
     });
 
     j_editor.setOptions({
         enableBasicAutocompletion: true,
         enableSnippets: true,
-        enableLiveAutocompletion: false
+        enableLiveAutocompletion: true
     });
 
+    $('.fa-moon').click(function(){
+        h_editor.setTheme("ace/theme/ambiance");
+        j_editor.setTheme("ace/theme/ambiance");
+        c_editor.setTheme("ace/theme/ambiance");
+        localStorage.setItem('theme','ambiance');
+    });
+
+    $('.fa-sun').click(function(){
+        h_editor.setTheme("ace/theme/xcode");
+        j_editor.setTheme("ace/theme/xcode");
+        c_editor.setTheme("ace/theme/xcode");
+        localStorage.setItem('theme','xcode');
+    });
 
     $(".post_details").click(show_post_details);
-
-
-    Mousetrap.bind('ctrl+1', function(e) {
-        console.log('hello');
-        $('.editors').css("grid-template-columns", '70% auto auto');
-
-    });
-
-
-    Mousetrap.bind('ctrl+2', function(e) {
-        console.log('hello');
-        $('.editors').css("grid-template-columns", 'auto 70%  auto');
-
-    });
-
-
-    Mousetrap.bind('ctrl+3', function(e) {
-        console.log('hello');
-        $('.editors').css("grid-template-columns", 'auto auto 70%');
-
-    });
-
 
     $("#libraries").autocomplete({
         source: function(request, response) {

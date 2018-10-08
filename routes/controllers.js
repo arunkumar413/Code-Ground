@@ -5,13 +5,13 @@ path = require('path');
 path.join(__dirname, 'template.html')
 Tutorial = require('../models/tutorial_model');
 
-
 var show_editor = function(req, res, next) {
     let data = { doc: '' }
     res.render('editor', { data });
 }
 
 var return_entry = function(req, res, next) {
+    var temp;
     Post.findById(req.params.id, function(err, doc1) {
         if (err) console.log(err);
         let data = { doc: doc1 };
@@ -21,6 +21,7 @@ var return_entry = function(req, res, next) {
 }
 
 var display_frame = function(req, res, next) {
+    var temp='';
     Post.findById(req.params.id, function(err, doc) {
         if (err) return handleError(err);
         fs.readFile(path.join(__dirname, 'template.html'), 'utf8', function read(err, data) {
@@ -33,7 +34,12 @@ var display_frame = function(req, res, next) {
             $('body').prepend(doc.html);
             $('body > script').append(doc.js);
             doc.libs.forEach(function(x) {
-                var temp = (`<script src="${x}"><\/script>`);
+                if(x.endsWith('.css')){
+                temp= (`<link rel='stylesheet' href="${x}"></link>`);
+                }
+                else if (x.endsWith('.js')){
+                 temp = (`<script src="${x}"><\/script>`);
+                }
                 $('head').append(temp);
             })
 
@@ -53,7 +59,6 @@ var save_files = function(req, res, next) {
     var t = req.body.title;
     var d = req.body.des;
     var p = req.body.publish;
-
     if (req.body.id === "") {
         let data = { html: h, css: c, js: j, libs: l, title: t, description: d, publish: p};
         doc = new Post(data);
@@ -62,7 +67,7 @@ var save_files = function(req, res, next) {
             res.json({ redirect: doc._id });
         });
     } else {
-        let data = { html: h, css: c, js: j, libs: l };
+        let data = { html: h, css: c, js: j, libs: l};
         let options = { new: true, upsert: true };
         Post.findByIdAndUpdate(req.body.id, data, options, function(err, p) {
             if (err) return handleError(err);
@@ -73,16 +78,11 @@ var save_files = function(req, res, next) {
 
 
 var generate_tutorial= function (req, res, next){
-    console.log('---------reached tutorial-------------------------')
     res.render('generate_tutorial');
 }
 
 
 var save_tutorial = function (req,res,next){
-        console.log('-----------------reached_save_tutorial------------');
-        console.log(req.body);
-        console.log(req.body.entries);
-        console.log(req.body.tutorial_title);
         var data = req.body;
         doc = new Tutorial();
         doc.entry = data.entries;
