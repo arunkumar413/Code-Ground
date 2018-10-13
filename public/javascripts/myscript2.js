@@ -107,7 +107,7 @@ function exec() {
     });
 
     $('.fork').click(function() {
-        fork_file(h_editor, c_editor, j_editor);
+        fork_file(h_editor, c_editor, j_editor, libraries);
     });
 
 
