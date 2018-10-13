@@ -1,18 +1,16 @@
 $(document).ready(exec);
-    var libraries = [];
+var libraries = [];
 
 
 function exec() {
     l = $('#modal .lib_link');
-    l.map(function(x,y){
-libraries.push($(y).text().toString());
-});
+    l.map(function(x, y) {
+        libraries.push($(y).find('span').text().toString());
+    });
     $('#modal .rem').click(remove_libraries);
-    if (localStorage.getItem('theme')==null){
+    if (localStorage.getItem('theme') == null) {
         theme = 'xcode';
-    }
-
-    else {
+    } else {
         theme = localStorage.getItem('theme');
     }
     var theme = localStorage.getItem('theme');
@@ -24,12 +22,12 @@ libraries.push($(y).text().toString());
     // h_editor.setValue("resnponse-data');
 
     var c_editor = ace.edit("css_editor");
-    c_editor.setTheme("ace/theme/"+theme);
+    c_editor.setTheme("ace/theme/" + theme);
     c_editor.session.setMode("ace/mode/css");
     c_editor.setShowPrintMargin(false);
 
     var j_editor = ace.edit("js_editor");
-    j_editor.setTheme("ace/theme/"+theme);
+    j_editor.setTheme("ace/theme/" + theme);
     j_editor.session.setMode("ace/mode/javascript");
     j_editor.setShowPrintMargin(false);
 
@@ -53,18 +51,18 @@ libraries.push($(y).text().toString());
         enableLiveAutocompletion: true
     });
 
-    $('.fa-moon').click(function(){
+    $('.fa-moon').click(function() {
         h_editor.setTheme("ace/theme/ambiance");
         j_editor.setTheme("ace/theme/ambiance");
         c_editor.setTheme("ace/theme/ambiance");
-        localStorage.setItem('theme','ambiance');
+        localStorage.setItem('theme', 'ambiance');
     });
 
-    $('.fa-sun').click(function(){
+    $('.fa-sun').click(function() {
         h_editor.setTheme("ace/theme/xcode");
         j_editor.setTheme("ace/theme/xcode");
         c_editor.setTheme("ace/theme/xcode");
-        localStorage.setItem('theme','xcode');
+        localStorage.setItem('theme', 'xcode');
     });
 
     $(".post_details").click(show_post_details);
@@ -113,16 +111,16 @@ libraries.push($(y).text().toString());
     });
 
 
-    $('#libraries').on('paste', function () {
+    $('#libraries').on('paste', function() {
         var element = this;
-        setTimeout(function () {
-          var link = $(element).val();
-              console.log(link);
-              libraries.push(link);
-              $("#modal").append(`<p class='lib_link'> <span> ${link} </span> <button class='rem'> Remove </button> </p>`);
-        $('#modal .rem').click(remove_libraries);
+        setTimeout(function() {
+            var link = $(element).val();
+            console.log(link);
+            libraries.push(link);
+            $("#modal").append(`<p class='lib_link'> <span> ${link} </span> <button class='rem'> Remove </button> </p>`);
+            $('#modal .rem').click(remove_libraries);
         }, 100);
-      });
+    });
 
 } //end of exec
 
@@ -145,7 +143,7 @@ function save_file(h_editor, c_editor, j_editor, libs) {
         dataType: 'json',
         async: true,
         success: function(msg) {
-            window.location.href= msg.redirect;
+            window.location.href = msg.redirect;
 
         }
     });
@@ -172,7 +170,7 @@ function fork_file(h_editor, c_editor, j_editor, libs) {
         dataType: 'json',
         async: true,
         success: function(msg) {
-            window.location.href= location.origin + '/' + msg.redirect;
+            window.location.href = location.origin + '/' + msg.redirect;
 
         }
     });
@@ -187,7 +185,7 @@ function show_post_details() {
 
 var save_libraries = function(event, ui) {
     libraries.push(ui.item.value);
-    $("#modal").append(`<p class='lib_link'> <span> ${ui.item.value} </span> <button class='rem'> Remove </button> </p>`);
+    $("#modal .post_details").before(`<p class='lib_link'> <span> ${ui.item.value} </span> <button class='rem'> Remove </button> </p>`);
     $('#modal .rem').click(remove_libraries);
 
 }
@@ -199,5 +197,3 @@ function remove_libraries() {
     libraries.splice(loc, 1); //remove the library from array
     $(this).parent().remove();
 }
-
-
