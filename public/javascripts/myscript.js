@@ -73,15 +73,25 @@ function exec() {
     });
 
     $('.expand_html').click(function() {
-        $('.editors').css("grid-template-columns", '70% auto auto');
+        $('.editors').css('grid-template-columns', '100% 0 0');
+        $(".expand_html").addClass("btn-info").removeClass('btn-outline-info');
+        $(".expand_css, .expand_js").removeClass("btn-info").addClass('btn-outline-info');
+
     });
 
     $('.expand_css').click(function() {
-        $('.editors').css("grid-template-columns", 'auto 70% auto');
+        $('.editors').css("grid-template-columns", '0 100% 0');
+        $(".expand_css").addClass("btn-info").removeClass('btn-outline-info');
+        $(".expand_html , .expand_js").removeClass("btn-info").addClass('btn-outline-info');
+
+
     });
 
     $('.expand_js').click(function() {
-        $('.editors').css("grid-template-columns", 'auto auto 70%');
+        $('.editors').css("grid-template-columns", '0 0 100%');
+        $(".expand_js").addClass("btn-info").removeClass('btn-outline-info');;
+        $(".expand_html , .expand_css").removeClass("btn-info").addClass('btn-outline-info');
+
     });
 
     $('.reset_view').click(function() {
