@@ -56,3 +56,7 @@ button{
   grid-row-gap: 5px;
   background-color: whitesmoke;
 }
+
+#github-icon{
+  text-align: center;
+}
