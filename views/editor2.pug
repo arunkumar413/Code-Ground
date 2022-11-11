@@ -5,8 +5,10 @@ block content
 			span HTML			
 			pre#html_editor #{data.doc.html}
 		.css
+			span CSS
 			pre#css_editor #{data.doc.css}
 		.js
+			span Js
 			pre#js_editor #{data.doc.js}
 	- var s = '/out/'+ data.doc._id
 	iframe(id ='frame' src=s)
