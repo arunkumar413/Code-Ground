@@ -47,5 +47,16 @@ html
     #search-results
     h3 Libraries Added
     #library-container
+      if data.doc && data.doc.libs && data.doc.libs.length
+        each lib in data.doc.libs
+          .lib_link
+            span #{lib}
+            button.rem(
+              hx-delete=`/remove-library/${data.doc._id}`
+              hx-vals=`{"library":"${lib}"}`
+              hx-swap="none"
+            ) Remove
+      else
+        p No libraries added yet.
     button.post_details.btn.btn-outline-success.btn-sm Close
   block content

@@ -190,7 +190,7 @@ async function add_library(req, res, next) {
         const html = doc.libs.map(lib => `
             <div class="lib_link">
                 <span>${lib}</span>
-                <button class="rem" hx-post="/remove-library/${id}" hx-vals='${JSON.stringify({ library: lib })}' hx-swap="none">Remove</button>
+                <button class="rem" hx-delete="/remove-library/${id}" hx-vals='${JSON.stringify({ library: lib })}' hx-swap="none">Remove</button>
             </div>
         `).join('');
 
@@ -199,6 +199,46 @@ async function add_library(req, res, next) {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error adding library');
+    }
+}
+
+async function remove_library(req, res, next) {
+    const library = req.query.library;
+    const id = req.params.id;
+
+
+    console.log("###### Removing Librry ################")
+    console.log(req.body);
+    console.log(id);
+    console.log("###### Removing Librry ################")
+
+    if (!library) {
+        return res.status(400).send('Library is required');
+    }
+
+    try {
+        const doc = await Post.findById(id);
+        if (!doc) {
+            return res.status(404).send('Document not found');
+        }
+
+        if (doc.libs && doc.libs.includes(library)) {
+            doc.libs = doc.libs.filter(lib => lib !== library);
+            await doc.save();
+        }
+
+        const html = doc.libs.map(lib => `
+            <div class="lib_link">
+                <span>${lib}</span>
+                <button class="rem" hx-delete="/remove-library/${id}" hx-vals='${JSON.stringify({ library: lib })}' hx-swap="none">Remove</button>
+            </div>
+        `).join('');
+
+        res.send(html);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error removing library');
     }
 }
 
@@ -212,5 +252,6 @@ module.exports = {
     update_tutorial,
     view_tutorial,
     search_cdnjs,
-    add_library
+    add_library,
+    remove_library
 };
