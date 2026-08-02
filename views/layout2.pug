@@ -10,6 +10,9 @@ html
     script(src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ext-language_tools.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.2/mousetrap.min.js')
     script(src="./javascripts/myscript2.js")
+    script(src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" 
+          integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V"
+          crossorigin="anonymous")
     link(rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css')
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous")
     link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.3.1/css/all.css', integrity='sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU', crossorigin='anonymous')
@@ -32,12 +35,17 @@ html
       i.fas.fa-sun.btn.btn-link
       i.fas.fa-moon.btn.btn-link   
   #modal.modal_hide
-    h4 #{data.doc.title}
-    input#libraries.form-control.form-control-sm(placeholder='Search cdnjs or paste the library url')
-    p.description #{data.doc.description}
-    each val in data.doc.libs
-      p.lib_link 
-        span #{val}
-        button.rem Remove
+    h4 Search for libraries
+    //- input#libraries.form-control.form-control-sm(placeholder='Search cdnjs or paste the library url')
+    input#libraries.form-control.form-control-sm(
+      hx-get=`/search-cdnjs/${data.doc._id}`
+      hx-trigger="keyup changed delay:500ms"
+      hx-target="#search-results"
+      hx-swap="innerHTML"
+      name="search"
+      placeholder="Search cdnjs")
+    #search-results
+    h3 Libraries Added
+    #library-container
     button.post_details.btn.btn-outline-success.btn-sm Close
   block content

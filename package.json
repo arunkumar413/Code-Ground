@@ -3,30 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=* NODE_ENV=production node ./bin/www",
+    "start": "npx kill-port 3000 && DEBUG=* NODE_ENV=production node ./bin/www",
     "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
-    "@google-cloud/datastore": "^1.4.2",
-    "@google-cloud/storage": "^1.7.0",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.0.0",
-    "express": "~4.16.0",
-    "firebase-admin": "^6.0.0",
-    "html2pug": "^2.0.1",
-    "http-errors": "~1.6.2",
-    "mongoose": "^5.2.12",
-    "mongoose-findorcreate": "^3.0.0",
-    "morgan": "~1.9.0",
-    "passport": "^0.4.0",
-    "passport-github": "^1.1.0",
-    "pug": "2.0.0-beta11",
-    "save": "^2.3.2"
+    "express": "^4.22.2",
+    "mongoose": "^9.9.1",
+    "morgan": "^1.11.0",
+    "pug": "^3.0.4"
   },
   "devDependencies": {
-    "nodemon": "^1.18.2"
+    "nodemon": "^3.1.14"
   }
 }

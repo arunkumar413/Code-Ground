@@ -6,23 +6,22 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 require('dotenv').config()
 var User = require('./models/users');
-var findOrCreate = require('mongoose-findorcreate')
 var tutorialRouter = require('./routes/tutorial')
+
+const { USERNAME, PASSWORD, MONGODB_URI } = require('./constants');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-username = process.env.USER;
-password = process.env.PASSWORD
-var mongoDB = process.env.DATABASE_LINK;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-mongoose.connect(mongoDB);
+mongoose.connect(MONGODB_URI)
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 

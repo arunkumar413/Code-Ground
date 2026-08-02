@@ -1,17 +1,18 @@
 var mongoose = require('mongoose');
-var findOrCreate = require('mongoose-findorcreate')
 
   var Schema = mongoose.Schema;
-  var UserSch = new Schema({
-  	githubId: String,
-  	displayName: String,
-  	username:String,
-  	profileUrl:String,
-  	location:String
+
+  var UserSchema = new Schema({
+  	firstName: String,
+	lastName: String,
+	email: { type: String, unique: [true, 'Email already exists'] },
+	password: String,
+	createdAt: { type: Date, default: Date.now },
+	updatedAt: { type: Date, default: Date.now },
+	links:[String]
   	
   });
 
-UserSch.plugin(findOrCreate);
 
-var User = mongoose.model('User', UserSch);
+var User = mongoose.model('User', UserSchema);
 module.exports = User;

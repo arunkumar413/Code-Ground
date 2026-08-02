@@ -67,23 +67,23 @@ function exec() {
 
     $(".post_details").click(show_post_details);
 
-    $("#libraries").autocomplete({
-        source: function(request, response) {
-            $.ajax({
-                url: 'https://api.cdnjs.com/libraries?',
-                dataType: "jsonp",
-                data: {
-                    search: request.term
-                },
-                success: function(data) {
-                    response(data.results.map(x => ({ label: x.name, value: x.latest })));
-                }
-            });
-        },
-        appendTo: '#modal',
-        minLength: 3,
-        select: save_libraries
-    });
+    // $("#libraries").autocomplete({
+    //     source: function(request, response) {
+    //         $.ajax({
+    //             url: 'https://api.cdnjs.com/libraries?',
+    //             dataType: "json",
+    //             data: {
+    //                 search: request.term
+    //             },
+    //             success: function(data) {
+    //                 response(data.results.map(x => ({ label: x.name, value: x.latest })));
+    //             }
+    //         });
+    //     },
+    //     appendTo: '#modal',
+    //     minLength: 3,
+    //     select: save_libraries
+    // });
 
 
 
