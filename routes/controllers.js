@@ -205,13 +205,6 @@ async function add_library(req, res, next) {
 async function remove_library(req, res, next) {
     const library = req.query.library;
     const id = req.params.id;
-
-
-    console.log("###### Removing Librry ################")
-    console.log(req.body);
-    console.log(id);
-    console.log("###### Removing Librry ################")
-
     if (!library) {
         return res.status(400).send('Library is required');
     }

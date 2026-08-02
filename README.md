@@ -17,18 +17,12 @@ https://code-ground.herokuapp.com/
 9) Loads faster
 10) Autocomplete suggestions
 11) Tab complete snippets
-12) Create tutorials from the snippets
-13) Include libraries from cdnjs
+12) Include libraries from cdnjs
 14) Highlight mactcing braces/tags
 
 
-# Screenshots:
+# Installation instructions
 
-### Editor screen
-![screenshot](https://screenshotscdn.firefoxusercontent.com/images/7f5b9ae3-c173-43e3-ae08-4df2f6ec7c78.png)
-
-### Create tutorial screen
-![create tutorial screen](https://screenshotscdn.firefoxusercontent.com/images/238de6eb-9269-4e5b-adb3-bb9fe4b9d01a.png)
-
-### Tutorial screen
-![tutorial screen](https://screenshotscdn.firefoxusercontent.com/images/e77354ba-ba5e-4b07-8d49-ce1f530fdf9c.png)
+1) Git clone the repo.
+2) Run `npm install` to install the depencies.
+3) Run `npm run start` to start the application.

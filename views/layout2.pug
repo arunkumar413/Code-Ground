@@ -26,16 +26,16 @@ html
       button.expand_css.btn.btn-outline-info.btn-sm CSS
       button.expand_js.btn.btn-outline-info.btn-sm JS
       button.reset_view.btn.btn-outline-info.btn-sm Reset view
-      button.post_details.btn.btn-outline-danger.btn-sm Post details
-      a.btn.btn-outline-primary.btn-sm(href='/tutorial') Create a tutorial
-      -var h = '/out/' + data.doc._id;
+      button.post_details.btn.btn-outline-secondary.btn-sm Libraries
       a.btn.btn-outline-primary.btn-sm(href=h target='_blank') Output in new tab
       a(href='https://github.com/arunkumar413/Code-Ground' target="_blank")
         i.fab.fa-github.fa-2x
       i.fas.fa-sun.btn.btn-link
       i.fas.fa-moon.btn.btn-link   
   #modal.modal_hide
-    h4 Search for libraries
+    .modal-header
+      h5 Search for libraries
+      button.post_details.btn.btn-outline-danger.btn-sm Close
     //- input#libraries.form-control.form-control-sm(placeholder='Search cdnjs or paste the library url')
     input#libraries.form-control.form-control-sm(
       hx-get=`/search-cdnjs/${data.doc._id}`
@@ -45,7 +45,7 @@ html
       name="search"
       placeholder="Search cdnjs")
     #search-results
-    h3 Libraries Added
+    h5 Libraries Added
     #library-container
       if data.doc && data.doc.libs && data.doc.libs.length
         each lib in data.doc.libs
@@ -58,5 +58,4 @@ html
             ) Remove
       else
         p No libraries added yet.
-    button.post_details.btn.btn-outline-success.btn-sm Close
   block content
