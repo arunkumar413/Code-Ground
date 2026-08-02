@@ -25,11 +25,11 @@ https://code-ground.herokuapp.com/
 
 1) Git clone the repo.
 2) Create a `.env` file at the project root.
-2) Add the mongoDB credentials in the `.env` file as below:
+3) Add the mongoDB credentials in the `.env` file as below:
 
 USERNAME=userName
 PASSWORD=password
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.x7hyqvg.mongodb.net/?appName=Cluster0
 PORT=3000
-2) Run `npm install` to install the depencies.
-3) Run `npm run start` to start the application.
+4) Run `npm install` to install the depencies.
+5) Run `npm run start` to start the application.
